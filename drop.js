@@ -7,7 +7,16 @@
 // Updated: 2012-05-21
 // REQUIRES: jquery 1.7.x, event.drag 2.2
 
-;(function($){ // secure $ jQuery alias
+// Universal module definition
+(function (factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery', './drag'], factory);
+	} else {
+		// Browser globals
+		factory(jQuery);
+	}
+}(function ($) {
 
 // Events: drop, dropstart, dropend
 
@@ -299,4 +308,4 @@ drop = $.event.special.drop = {
 // share the same special event configuration with related events...
 $special.dropinit = $special.dropstart = $special.dropend = drop;
 
-})(jQuery); // confine scope	
+}));
